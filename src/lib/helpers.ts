@@ -1,13 +1,13 @@
 /**
- * Pause code exectuiton for target time in miliseconds
+ * Pause code exectuiton for target time in seconds
  */
-const sleep = (milliseconds: number): Promise<string> => {
+const sleep = (seconds: number): Promise<string> => {
   return new Promise((resolve) => {
-    if (isNaN(milliseconds)) {
+    if (isNaN(seconds)) {
       throw new Error('milliseconds not a number');
     }
 
-    setTimeout(() => resolve('done!'), milliseconds);
+    setTimeout(() => resolve('done!'), seconds);
   });
 };
 

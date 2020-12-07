@@ -85,7 +85,9 @@ const run = async (): Promise<void> => {
   try {
     const processUrl = await triggerProcess();
 
-    if (getInput('await-complete').length) {
+    const awaitComplete = getInput('await-complete');
+
+    if (awaitComplete.length && awaitComplete !== 'false' && awaitComplete !== '0') {
       const response = await awaitProcess(processUrl);
 
       if (!response) {

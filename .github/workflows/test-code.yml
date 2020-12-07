@@ -5,7 +5,7 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test
+    name: Test codebase
     steps:
       - uses: actions/checkout@master
       - name: Use Node.js 12.x
@@ -17,10 +17,3 @@ jobs:
           yarn install --frozen-lockfile
           yarn lint
           yarn build
-      - name: Run action tests
-        uses: ./
-        with:
-          process-secret: ${{ secrets.ROBOCORP_SECRET }}
-          process-url: ${{ secrets.ROBOCORP_URL }}
-          payload: '{"term":"cute dog picture"}'
-          await-complete: true
