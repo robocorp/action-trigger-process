@@ -7,7 +7,7 @@ const sleep = (seconds: number): Promise<string> => {
       throw new Error('milliseconds not a number');
     }
 
-    setTimeout(() => resolve('done!'), seconds);
+    setTimeout(() => resolve('done!'), seconds * 1000);
   });
 };
 

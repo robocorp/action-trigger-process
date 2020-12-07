@@ -10,14 +10,14 @@ module.exports =
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.sleep = void 0;
 /**
- * Pause code exectuiton for target time in miliseconds
+ * Pause code exectuiton for target time in seconds
  */
-const sleep = (milliseconds) => {
+const sleep = (seconds) => {
     return new Promise((resolve) => {
-        if (isNaN(milliseconds)) {
+        if (isNaN(seconds)) {
             throw new Error('milliseconds not a number');
         }
-        setTimeout(() => resolve('done!'), milliseconds);
+        setTimeout(() => resolve('done!'), seconds * 1000);
     });
 };
 exports.sleep = sleep;
@@ -110,7 +110,8 @@ const awaitProcess = (processUrl) => __awaiter(void 0, void 0, void 0, function*
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const processUrl = yield triggerProcess();
-        if (core_1.getInput('await-complete').length) {
+        const awaitComplete = core_1.getInput('await-complete');
+        if (awaitComplete.length && awaitComplete !== 'false' && awaitComplete !== '0') {
             const response = yield awaitProcess(processUrl);
             if (!response) {
                 core_1.setFailed('Robot failed to execute');
