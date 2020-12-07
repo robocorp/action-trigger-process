@@ -7,6 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Run action tests
     steps:
+      - uses: actions/checkout@master
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
       - name: Trigger Robocorp Cloud process
         uses: ./
         with:
