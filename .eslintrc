@@ -1,0 +1,7 @@
+{
+    "plugins": ["github", "prettier"],
+    "extends": ["plugin:github/recommended", "plugin:github/typescript"],
+    "rules": {
+        "no-console": "off"
+    }
+}

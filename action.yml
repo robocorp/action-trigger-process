@@ -1,0 +1,19 @@
+name: 'Robocorp - Trigger Cloud process'
+description: 'Trigger a Robocorp Cloud process'
+inputs:
+  process-secret:
+    description: 'Process API access secret key'
+    required: true
+  process-url:
+    description: 'Process trigger URL'
+    required: true
+  payload:
+    description: JSON payload for the robot
+  await-complete:
+    description: Should the action wait for process completion
+  timeout:
+    description: Max time to wait for the action to complete (in seconds)
+    default: '120'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
