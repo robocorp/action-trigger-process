@@ -47,7 +47,7 @@ const core_1 = __webpack_require__(186);
 const node_fetch_1 = __importDefault(__webpack_require__(467));
 const helpers_1 = __webpack_require__(857);
 const headers = {
-    Authorization: `RC_WSKEY ${core_1.getInput('api-key')}`,
+    Authorization: `RC-WSKEY ${core_1.getInput('api-key')}`,
     'Content-Type': 'application/json',
 };
 /**
