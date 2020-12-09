@@ -14,14 +14,7 @@ const triggerProcess = async (): Promise<string> => {
   const payload = getInput('payload');
   const body: Record<string, unknown> = payload && payload.length ? JSON.parse(payload) : {};
 
-  try {
-    const response = await fetch(getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
-    const DEBUG = await response.text();
-    console.log('DEBUG', DEBUG);
-  } catch (err) {
-    console.log(getInput('process-url'), err);
-  }
-
+  const response = await fetch(getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
   const json = await response.json();
 
   if (json.message !== 'OK') {

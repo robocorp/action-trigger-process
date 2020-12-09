@@ -46,9 +46,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core_1 = __webpack_require__(186);
 const node_fetch_1 = __importDefault(__webpack_require__(467));
 const helpers_1 = __webpack_require__(857);
-const WORKSPACE_ENDPOINT = 'https://api.eu1.robocloud.eu/workspace-v1/workspaces';
 const headers = {
-    'robocloud-process-secret': core_1.getInput('process-secret'),
+    Authorization: `RC_WSKEY ${core_1.getInput('api-key')}`,
     'Content-Type': 'application/json',
 };
 /**
@@ -64,7 +63,7 @@ const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     const { workspaceId, processId, processRunId } = json;
     console.info(`Process ${processId} triggered`);
-    return `${WORKSPACE_ENDPOINT}/${workspaceId}/processes/${processId}/runs/${processRunId}`;
+    return `${core_1.getInput('api-endpoint')}/${workspaceId}/processes/${processId}/runs/${processRunId}`;
 });
 /**
  * Wait for a Robocorp Cloud process to complete
