@@ -2,10 +2,8 @@ import { getInput, setFailed } from '@actions/core';
 import fetch from 'node-fetch';
 import { sleep } from './lib/helpers';
 
-const WORKSPACE_ENDPOINT = 'https://api.eu1.robocloud.eu/workspace-v1/workspaces';
-
 const headers = {
-  'robocloud-process-secret': getInput('process-secret'),
+  Authorization: getInput('api-key'),
   'Content-Type': 'application/json',
 };
 
@@ -27,7 +25,7 @@ const triggerProcess = async (): Promise<string> => {
 
   console.info(`Process ${processId} triggered`);
 
-  return `${WORKSPACE_ENDPOINT}/${workspaceId}/processes/${processId}/runs/${processRunId}`;
+  return `${getInput('api-endpoint')}/${workspaceId}/processes/${processId}/runs/${processRunId}`;
 };
 
 /**

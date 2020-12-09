@@ -15,7 +15,7 @@ jobs:
       - name: Trigger Robocorp Cloud process
         uses: ./
         with:
-          process-secret: ${{ secrets.ROBOCORP_SECRET }}
+          api-key: ${{ secrets.ROBOCORP_API_KEY}}
           process-url: ${{ secrets.ROBOCORP_URL }}
           payload: '{"term":"cute dog picture"}'
           await-complete: true
