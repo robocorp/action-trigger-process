@@ -17,16 +17,15 @@ const triggerProcess = async (): Promise<string> => {
   const response = await fetch(getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
   const json = await response.json();
 
-  if (json.message !== 'OK') {
-    console.log(JSON.stringify(headers));
+  if (!json.id) {
     throw Error(`Failed to start process - ${JSON.stringify(json)}`);
   }
 
-  const { workspaceId, processId, processRunId } = json;
+  const { id } = json;
 
-  console.info(`Process ${processId} triggered`);
+  console.info(`Process ${id} triggered`);
 
-  return `${getInput('api-endpoint')}/${workspaceId}/processes/${processId}/runs/${processRunId}`;
+  return `${getInput('process-url')}/${id}`;
 };
 
 /**
