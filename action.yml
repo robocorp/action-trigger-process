@@ -16,7 +16,7 @@ inputs:
     default: '120'
   api-endpoint:
     description: Robocorp workspace API endpoint
-    default: https://api.eu1.robocloud.eu/workspace-v1/workspaces
+    default: https://api.eu1.robocloud.eu/process-v1
 runs:
   using: 'node12'
   main: 'dist/index.js'
