@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import { sleep } from './lib/helpers';
 
 const headers = {
-  Authorization: getInput('api-key'),
+  Authorization: `RC_WSKEY ${getInput('api-key')}`,
   'Content-Type': 'application/json',
 };
 
