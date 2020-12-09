@@ -59,6 +59,7 @@ const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     const response = yield node_fetch_1.default(core_1.getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
     const json = yield response.json();
     if (json.message !== 'OK') {
+        console.log(JSON.stringify(headers));
         throw Error(`Failed to start process - ${JSON.stringify(json)}`);
     }
     const { workspaceId, processId, processRunId } = json;
