@@ -1,8 +1,8 @@
 name: 'Robocorp - Trigger Cloud process'
 description: 'Trigger a Robocorp Cloud process'
 inputs:
-  process-secret:
-    description: 'Process API access secret key'
+  api-key:
+    description: 'Workspace API key'
     required: true
   process-url:
     description: 'Process trigger URL'
@@ -14,6 +14,9 @@ inputs:
   timeout:
     description: Max time to wait for the action to complete (in seconds)
     default: '120'
+  api-endpoint:
+    description: Robocorp workspace API endpoint
+    default: https://api.eu1.robocloud.eu/workspace-v1/workspaces
 runs:
   using: 'node12'
   main: 'dist/index.js'
