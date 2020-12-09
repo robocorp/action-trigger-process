@@ -18,6 +18,7 @@ const triggerProcess = async (): Promise<string> => {
   const json = await response.json();
 
   if (json.message !== 'OK') {
+    console.log(JSON.stringify(headers));
     throw Error(`Failed to start process - ${JSON.stringify(json)}`);
   }
 
