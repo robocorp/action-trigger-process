@@ -56,14 +56,15 @@ const headers = {
 const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     const payload = core_1.getInput('payload');
     const body = payload && payload.length ? JSON.parse(payload) : {};
-    const response = yield node_fetch_1.default(core_1.getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
+    const url = `${core_1.getInput('api-endpoint')}/workspaces/${core_1.getInput('workspace-id')}/processes/${core_1.getInput('process-id')}/runs`;
+    const response = yield node_fetch_1.default(url, { method: 'POST', body: JSON.stringify({ variables: body }), headers });
     const json = yield response.json();
     if (!json.id) {
         throw Error(`Failed to start process - ${JSON.stringify(json)}`);
     }
     const { id } = json;
     console.info(`Process ${id} triggered`);
-    return `${core_1.getInput('process-url')}/${id}`;
+    return `${url}/${id}`;
 });
 /**
  * Wait for a Robocorp Cloud process to complete

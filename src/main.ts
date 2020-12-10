@@ -14,7 +14,9 @@ const triggerProcess = async (): Promise<string> => {
   const payload = getInput('payload');
   const body: Record<string, unknown> = payload && payload.length ? JSON.parse(payload) : {};
 
-  const response = await fetch(getInput('process-url'), { method: 'POST', body: JSON.stringify({ variables: body }), headers });
+  const url = `${getInput('api-endpoint')}/workspaces/${getInput('workspace-id')}/processes/${getInput('process-id')}/runs`;
+
+  const response = await fetch(url, { method: 'POST', body: JSON.stringify({ variables: body }), headers });
   const json = await response.json();
 
   if (!json.id) {
@@ -25,7 +27,7 @@ const triggerProcess = async (): Promise<string> => {
 
   console.info(`Process ${id} triggered`);
 
-  return `${getInput('process-url')}/${id}`;
+  return `${url}/${id}`;
 };
 
 /**

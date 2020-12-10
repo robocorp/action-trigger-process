@@ -4,8 +4,11 @@ inputs:
   api-key:
     description: 'Workspace API key'
     required: true
-  process-url:
-    description: 'Process trigger URL'
+  workspace-id:
+    description: 'Target Robocorp Cloud worskpace ID'
+    required: true
+  process-id:
+    description: 'Target Robocorp Cloud process ID'
     required: true
   payload:
     description: JSON payload for the robot

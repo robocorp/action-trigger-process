@@ -18,18 +18,20 @@ jobs:
         uses: robocorp/action-trigger-process
         with:
           api-key: ${{ secrets.ROBOCORP_API_KEY }}
-          process-url: ${{ secrets.ROBOCORP_PROCESS_URL }}
+          workspace-id: ${{ secrets.ROBOCORP_WORKSPACE_ID }}
+          process-id: ${{ secrets.ROBOCORP_PROCESS_ID }}
           payload: '{"foo":"bar"}'
           await-complete: true
 ```
 
 ##### Configuration
 
-| option         | value   | default                                 | description                                                            |
-| -------------- | ------- | --------------------------------------- | ---------------------------------------------------------------------- |
-| api-key        | string  |                                         | Workspace API key with `read_runs` and `trigger_processes` permissions |
-| process-url    | string  |                                         | The target process URL                                                 |
-| payload        | string  | "{}"                                    | Stringified JSON payload passed to process                             |
-| await-complete | boolean | false                                   | Should the action await process completion                             |
-| timeout        | number  | 120                                     | Process run await timeout in seconds                                   |
-| api-endpoint   | string  | https://api.eu1.robocloud.eu/process-v1 | Robocorp workspace API endpoint                                        |
+| Option         | Value   | Required | Default                                 | Description                                                            |
+| -------------- | ------- | -------- | --------------------------------------- | ---------------------------------------------------------------------- |
+| api-key        | string  | \*       |                                         | Workspace API key with `read_runs` and `trigger_processes` permissions |
+| workspace-id   | string  | \*       |                                         | The target Robocorp Cloud workspace ID                                 |
+| process-id     | string  | \*       |                                         | The target Robocorp Cloud process ID                                   |
+| payload        | string  |          | "{}"                                    | Stringified JSON payload passed to process                             |
+| await-complete | boolean |          | false                                   | Should the action await process completion                             |
+| timeout        | number  |          | 120                                     | Process run await timeout in seconds                                   |
+| api-endpoint   | string  |          | https://api.eu1.robocloud.eu/process-v1 | Robocorp workspace API endpoint                                        |

@@ -16,6 +16,7 @@ jobs:
         uses: ./
         with:
           api-key: ${{ secrets.ROBOCORP_API_KEY}}
-          process-url: ${{ secrets.ROBOCORP_URL }}
+          workspace-id: ${{ secrets.ROBOCORP_WORKSPACE_ID }}
+          process-id: ${{ secrets.ROBOCORP_PROCESS_ID }}
           payload: '{"term":"cute dog picture"}'
           await-complete: true
