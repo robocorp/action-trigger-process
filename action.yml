@@ -1,5 +1,10 @@
-name: 'Robocorp - Trigger Cloud process'
-description: 'Trigger a Robocorp Cloud process'
+name: 'Trigger Robocorp Cloud process run'
+description: 'GitHub Action to trigger a process run in Robocorp Cloud'
+author: 'robocorp'
+branding:
+  color: 'purple'
+  icon: 'upload-cloud'
+
 inputs:
   api-key:
     description: 'Workspace API key'
