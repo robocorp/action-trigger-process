@@ -1,7 +1,7 @@
 {
-  "name": "typescript-action",
+  "name": "action-trigger-process",
   "version": "1.0.0",
-  "description": "TypeScript template action",
+  "description": "GitHub Action to trigger a Robocorp Cloud process",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc && ncc build --license licenses.txt",
@@ -17,8 +17,8 @@
     "node",
     "setup"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "Robocorp Oy",
+  "license": "Apache-2.0",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "node-fetch": "^2.6.1"
