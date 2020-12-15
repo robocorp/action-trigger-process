@@ -1,6 +1,6 @@
 # GitHub Action to trigger a Robocorp Cloud process
 
-This GitHub Actions triggers a Robocorp Cloud process run and optionally awaits it's execution.
+This GitHub Actions triggers a Robocorp Cloud process run and optionally waits for its execution to complete.
 
 ## Usage
 
