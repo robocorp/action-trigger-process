@@ -80,7 +80,8 @@ const awaitProcess = (processUrl) => __awaiter(void 0, void 0, void 0, function*
             if (json.state === 'COMPL') {
                 if (json.result === 'ERR') {
                     console.info(`Robot failed with an error`);
-                    return false;
+                    const failOnFail = core_1.getInput('fail-on-fail');
+                    return !(failOnFail === 'true' || failOnFail === '1');
                 }
                 console.info('Robot completed succesfully', JSON.stringify(json));
                 return true;
@@ -111,7 +112,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const processUrl = yield triggerProcess();
         const awaitComplete = core_1.getInput('await-complete');
-        if (awaitComplete.length && awaitComplete !== 'false' && awaitComplete !== '0') {
+        if (awaitComplete.length && (awaitComplete === 'true' || awaitComplete === '1')) {
             const response = yield awaitProcess(processUrl);
             if (!response) {
                 core_1.setFailed('Robot failed to execute');
