@@ -47,7 +47,9 @@ const awaitProcess = async (processUrl: string): Promise<boolean> => {
       if (json.state === 'COMPL') {
         if (json.result === 'ERR') {
           console.info(`Robot failed with an error`);
-          return false;
+
+          const failOnFail = getInput('fail-on-fail');
+          return !(failOnFail === 'true' || failOnFail === '1');
         }
 
         console.info('Robot completed succesfully', JSON.stringify(json));
@@ -87,7 +89,7 @@ const run = async (): Promise<void> => {
 
     const awaitComplete = getInput('await-complete');
 
-    if (awaitComplete.length && awaitComplete !== 'false' && awaitComplete !== '0') {
+    if (awaitComplete.length && (awaitComplete === 'true' || awaitComplete === '1')) {
       const response = await awaitProcess(processUrl);
 
       if (!response) {

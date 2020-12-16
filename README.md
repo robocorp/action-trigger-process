@@ -33,5 +33,6 @@ jobs:
 | process-id     | string  | \*       |                                         | The target Robocorp Cloud process ID                                   |
 | payload        | string  |          | "{}"                                    | Stringified JSON payload passed to process                             |
 | await-complete | boolean |          | false                                   | Should the action await process run completion                         |
+| fail-on-fail   | boolean |          | true                                    | Fail the GitHub workflow run if Robocorp Cloud process fails           |
 | timeout        | number  |          | 120                                     | Process run await timeout in seconds                                   |
 | api-endpoint   | string  |          | https://api.eu1.robocloud.eu/process-v1 | Robocorp workspace API endpoint                                        |
