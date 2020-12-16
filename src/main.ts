@@ -12,6 +12,9 @@ const headers = {
  */
 const triggerProcess = async (): Promise<string> => {
   const payload = getInput('payload');
+
+  console.log(payload);
+
   const body: Record<string, unknown> = payload && payload.length ? JSON.parse(payload) : {};
 
   const url = `${getInput('api-endpoint')}/workspaces/${getInput('workspace-id')}/processes/${getInput('process-id')}/runs`;

@@ -55,6 +55,7 @@ const headers = {
  */
 const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     const payload = core_1.getInput('payload');
+    console.log(payload);
     const body = payload && payload.length ? JSON.parse(payload) : {};
     const url = `${core_1.getInput('api-endpoint')}/workspaces/${core_1.getInput('workspace-id')}/processes/${core_1.getInput('process-id')}/runs`;
     const response = yield node_fetch_1.default(url, { method: 'POST', body: JSON.stringify({ variables: body }), headers });
