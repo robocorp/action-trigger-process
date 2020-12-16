@@ -48,8 +48,8 @@ const awaitProcess = async (processUrl: string): Promise<boolean> => {
         if (json.result === 'ERR') {
           console.info(`Robot failed with an error`);
 
-          const failOnFail = getInput('fail-on-fail');
-          return !(failOnFail === 'true' || failOnFail === '1');
+          const shouldFail = getInput('fail-on-robot-fail');
+          return !(shouldFail === 'true' || shouldFail === '1');
         }
 
         console.info('Robot completed succesfully', JSON.stringify(json));

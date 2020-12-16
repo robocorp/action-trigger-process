@@ -19,5 +19,4 @@ jobs:
           workspace-id: ${{ secrets.ROBOCORP_WORKSPACE_ID }}
           process-id: ${{ secrets.ROBOCORP_PROCESS_ID }}
           payload: '{"term":"cute dog picture"}'
-          fail-on-fail: false
           await-complete: true

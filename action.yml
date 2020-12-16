@@ -19,7 +19,7 @@ inputs:
     description: JSON payload for the robot
   await-complete:
     description: Should the action wait for process completion
-  fail-on-fail:
+  fail-on-robot-fail:
     description: Fail the GitHub worklfow run if Robocorp process run failed
     default: true
   timeout:

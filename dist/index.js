@@ -80,8 +80,8 @@ const awaitProcess = (processUrl) => __awaiter(void 0, void 0, void 0, function*
             if (json.state === 'COMPL') {
                 if (json.result === 'ERR') {
                     console.info(`Robot failed with an error`);
-                    const failOnFail = core_1.getInput('fail-on-fail');
-                    return !(failOnFail === 'true' || failOnFail === '1');
+                    const shouldFail = core_1.getInput('fail-on-robot-fail');
+                    return !(shouldFail === 'true' || shouldFail === '1');
                 }
                 console.info('Robot completed succesfully', JSON.stringify(json));
                 return true;
