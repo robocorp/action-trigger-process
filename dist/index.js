@@ -78,23 +78,27 @@ const awaitProcess = (processUrl) => __awaiter(void 0, void 0, void 0, function*
             const response = yield node_fetch_1.default(processUrl, { headers });
             const json = yield response.json();
             if (json.state === 'COMPL') {
+                core_1.setOutput('run-id', json.id);
+                core_1.setOutput('duration', json.duration);
+                core_1.setOutput('robotrun-ids', json.robotRuns.map(({ id }) => id).join(','));
+                core_1.setOutput('state', json.result);
                 if (json.result === 'ERR') {
-                    console.info(`Robot failed with an error`);
+                    console.info(`Process ${json.id} failed with an error`);
                     const shouldFail = core_1.getInput('fail-on-robot-fail');
                     return !(shouldFail === 'true' || shouldFail === '1');
                 }
-                console.info('Robot completed succesfully', JSON.stringify(json));
+                console.info(`Process ${json.id} completed succesfully in ${json.duration} seconds`);
                 return true;
             }
             if (json.errorCode && json.errorCode.length) {
-                console.info(`Robot failed with error code ${json.errorCode}.`);
+                console.info(`Process failed with error code ${json.errorCode}.`);
                 return false;
             }
             if (json.state === 'IP') {
-                console.info(`Robot still running. Attempt ${attempt}.`);
+                console.info(`Process still running. Attempt ${attempt}.`);
             }
             if (json.state === 'INI' || json.state === 'IND') {
-                console.info(`Robot initializing. Attempt ${attempt}.`);
+                console.info(`Process initializing. Attempt ${attempt}.`);
             }
             attempt += 1;
         }

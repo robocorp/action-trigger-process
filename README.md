@@ -36,3 +36,12 @@ jobs:
 | fail-on-robot-fail | boolean |          | true                                    | Fail the GitHub workflow run if Robocorp Cloud process fails           |
 | timeout            | number  |          | 120                                     | Process run await timeout in seconds                                   |
 | api-endpoint       | string  |          | https://api.eu1.robocloud.eu/process-v1 | Robocorp workspace API endpoint                                        |
+
+#### Outputs
+
+| Name         | Value                                 | Description                                   |
+| ------------ | ------------------------------------- | --------------------------------------------- |
+| run-id       | string                                | Process run id                                |
+| duration     | number                                | Process run execution duration                |
+| robotrun-ids | string                                | Comma seperated list of process robot run IDs |
+| state        | "COMPL" &#124; "ERR" &#124; "TIMEOUT" | Process run state code                        |

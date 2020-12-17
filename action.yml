@@ -28,6 +28,15 @@ inputs:
   api-endpoint:
     description: Robocorp workspace API endpoint
     default: https://api.eu1.robocloud.eu/process-v1
+outputs:
+  run-id:
+    description: Process run id
+  duration:
+    description: Process run execution duration
+  robotrun-ids:
+    description: List of process robot run IDs
+  state:
+    description: Process run state code
 runs:
   using: 'node12'
   main: 'dist/index.js'
