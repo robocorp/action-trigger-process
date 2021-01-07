@@ -1,4 +1,4 @@
-import { getInput, setFailed } from '@actions/core';
+import { getInput, setFailed, setOutput } from '@actions/core';
 import fetch from 'node-fetch';
 import { sleep } from './lib/helpers';
 
@@ -45,28 +45,33 @@ const awaitProcess = async (processUrl: string): Promise<boolean> => {
       const json = await response.json();
 
       if (json.state === 'COMPL') {
+        setOutput('run-id', json.id);
+        setOutput('duration', json.duration);
+        setOutput('robotrun-ids', json.robotRuns.map(({ id }: { id: string }) => id).join(','));
+        setOutput('state', json.result);
+
         if (json.result === 'ERR') {
-          console.info(`Robot failed with an error`);
+          console.info(`Process ${json.id} failed with an error`);
 
           const shouldFail = getInput('fail-on-robot-fail');
           return !(shouldFail === 'true' || shouldFail === '1');
         }
 
-        console.info('Robot completed succesfully', JSON.stringify(json));
+        console.info(`Process ${json.id} completed succesfully in ${json.duration} seconds`);
         return true;
       }
 
       if (json.errorCode && json.errorCode.length) {
-        console.info(`Robot failed with error code ${json.errorCode}.`);
+        console.info(`Process failed with error code ${json.errorCode}.`);
         return false;
       }
 
       if (json.state === 'IP') {
-        console.info(`Robot still running. Attempt ${attempt}.`);
+        console.info(`Process still running. Attempt ${attempt}.`);
       }
 
       if (json.state === 'INI' || json.state === 'IND') {
-        console.info(`Robot initializing. Attempt ${attempt}.`);
+        console.info(`Process initializing. Attempt ${attempt}.`);
       }
 
       attempt += 1;
