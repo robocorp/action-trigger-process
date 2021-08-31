@@ -19,4 +19,5 @@ jobs:
           workspace-id: ${{ secrets.ROBOCORP_WORKSPACE_ID }}
           process-id: ${{ secrets.ROBOCORP_PROCESS_ID }}
           payload: '{"term":"cute dog picture"}'
+          api-endpoint: https://api.ci.robocorp.dev/process-v1
           await-complete: true
