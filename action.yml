@@ -1,5 +1,5 @@
-name: 'Trigger Robocorp Cloud process run'
-description: 'GitHub Action to trigger a process run in Robocorp Cloud'
+name: 'Trigger Robocorp Control Room process run'
+description: 'GitHub Action to trigger a process run in Robocorp Control Room'
 author: 'robocorp'
 branding:
   color: 'purple'
@@ -10,10 +10,10 @@ inputs:
     description: 'Workspace API key'
     required: true
   workspace-id:
-    description: 'Target Robocorp Cloud worskpace ID'
+    description: 'Target Control Room worskpace ID'
     required: true
   process-id:
-    description: 'Target Robocorp Cloud process ID'
+    description: 'Target Control Room process ID'
     required: true
   payload:
     description: JSON payload for the robot
