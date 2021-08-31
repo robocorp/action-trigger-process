@@ -8,7 +8,7 @@ const headers = {
 };
 
 /**
- * Trigger a Robocorp Cloud process
+ * Trigger a Control Room process
  */
 const triggerProcess = async (): Promise<string> => {
   const payload = getInput('payload');
@@ -31,7 +31,7 @@ const triggerProcess = async (): Promise<string> => {
 };
 
 /**
- * Wait for a Robocorp Cloud process to complete
+ * Wait for a Control Room process to complete
  */
 const awaitProcess = async (processUrl: string): Promise<boolean> => {
   const timeout = +getInput('timeout') * 1000;

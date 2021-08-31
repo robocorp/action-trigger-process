@@ -1,12 +1,12 @@
-# GitHub Action to trigger a Robocorp Cloud process
+# GitHub Action to trigger a Robocorp Control Room process
 
-This GitHub Actions triggers a Robocorp Cloud process run and optionally waits for its execution to complete.
+This GitHub Actions triggers a Robocorp Control Room process run and optionally waits for its execution to complete.
 
 ## Usage
 
 ### Example Workflow file
 
-An example workflow to trigger and await a Robocorp Cloud process run:
+An example workflow to trigger and await a Control Room process run:
 
 ```yaml
 jobs:
@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Trigger process
     steps:
-      - name: Trigger Robocorp Cloud process run
+      - name: Trigger Control Room process run
         uses: robocorp/action-trigger-process@v1
         with:
           api-key: ${{ secrets.ROBOCORP_API_KEY }}
@@ -29,11 +29,11 @@ jobs:
 | Option             | Value   | Required | Default                                 | Description                                                            |
 | ------------------ | ------- | -------- | --------------------------------------- | ---------------------------------------------------------------------- |
 | api-key            | string  | \*       |                                         | Workspace API key with `read_runs` and `trigger_processes` permissions |
-| workspace-id       | string  | \*       |                                         | The target Robocorp Cloud workspace ID                                 |
-| process-id         | string  | \*       |                                         | The target Robocorp Cloud process ID                                   |
+| workspace-id       | string  | \*       |                                         | The target Control Room workspace ID                                   |
+| process-id         | string  | \*       |                                         | The target Control Room process ID                                     |
 | payload            | string  |          | "{}"                                    | Stringified JSON payload passed to process                             |
 | await-complete     | boolean |          | false                                   | Should the action await process run completion                         |
-| fail-on-robot-fail | boolean |          | true                                    | Fail the GitHub workflow run if Robocorp Cloud process fails           |
+| fail-on-robot-fail | boolean |          | true                                    | Fail the GitHub workflow run if Control Room process fails             |
 | timeout            | number  |          | 120                                     | Process run await timeout in seconds                                   |
 | api-endpoint       | string  |          | https://api.eu1.robocloud.eu/process-v1 | Robocorp workspace API endpoint                                        |
 

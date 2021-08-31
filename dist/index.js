@@ -51,7 +51,7 @@ const headers = {
     'Content-Type': 'application/json',
 };
 /**
- * Trigger a Robocorp Cloud process
+ * Trigger a Control Room process
  */
 const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     const payload = core_1.getInput('payload');
@@ -67,7 +67,7 @@ const triggerProcess = () => __awaiter(void 0, void 0, void 0, function* () {
     return `${url}/${id}`;
 });
 /**
- * Wait for a Robocorp Cloud process to complete
+ * Wait for a Control Room process to complete
  */
 const awaitProcess = (processUrl) => __awaiter(void 0, void 0, void 0, function* () {
     const timeout = +core_1.getInput('timeout') * 1000;
