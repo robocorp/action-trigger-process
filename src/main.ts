@@ -25,7 +25,7 @@ const triggerProcess = async (): Promise<string> => {
 
   const { id } = json;
 
-  console.info(`Process ${id} triggered`);
+  console.info(`Process run ${id} triggered`);
 
   return `${url}/${id}`;
 };
@@ -50,20 +50,15 @@ const awaitProcess = async (processUrl: string): Promise<boolean> => {
         setOutput('robotrun-ids', json.robotRuns.map(({ id }: { id: string }) => id).join(','));
         setOutput('state', json.result);
 
-        if (json.result === 'ERR') {
-          console.info(`Process ${json.id} failed with an error`);
-
-          const shouldFail = getInput('fail-on-robot-fail');
-          return !(shouldFail === 'true' || shouldFail === '1');
-        }
-
-        console.info(`Process ${json.id} completed succesfully in ${json.duration} seconds`);
+        console.info(`Process run ${json.id} completed succesfully in ${json.duration} seconds`);
         return true;
       }
 
-      if (json.errorCode && json.errorCode.length) {
-        console.info(`Process failed with error code ${json.errorCode}.`);
-        return false;
+      if (json.state === 'PENDING') {
+        console.info(`Process run ${json.id} failed with an error`);
+
+        const shouldFail = getInput('fail-on-robot-fail');
+        return !(shouldFail === 'true' || shouldFail === '1');
       }
 
       if (json.state === 'IP') {
@@ -102,7 +97,7 @@ const run = async (): Promise<void> => {
       }
     }
   } catch (err) {
-    setFailed(err.message);
+    setFailed((err as Error).message);
   }
 };
 
