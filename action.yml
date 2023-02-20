@@ -27,7 +27,7 @@ inputs:
     default: '120'
   api-endpoint:
     description: Robocorp workspace API endpoint
-    default: https://api.eu1.robocloud.eu/process-v1
+    default: https://api.eu1.robocorp.com/process-v1
 outputs:
   run-id:
     description: Process run id
