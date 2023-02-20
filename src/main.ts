@@ -1,6 +1,7 @@
 import { getInput, setFailed, setOutput } from '@actions/core';
 import fetch from 'node-fetch';
 import { sleep } from './lib/helpers';
+import type { TriggerRunResponse, RunStatusResponse } from './lib/types';
 
 const headers = {
   Authorization: `RC-WSKEY ${getInput('api-key')}`,
@@ -17,7 +18,7 @@ const triggerProcess = async (): Promise<string> => {
   const url = `${getInput('api-endpoint')}/workspaces/${getInput('workspace-id')}/processes/${getInput('process-id')}/runs`;
 
   const response = await fetch(url, { method: 'POST', body: JSON.stringify({ variables: body }), headers });
-  const json = await response.json();
+  const json = (await response.json()) as TriggerRunResponse;
 
   if (!json.id) {
     throw Error(`Failed to start process - ${JSON.stringify(json)}`);
@@ -42,12 +43,12 @@ const awaitProcess = async (processUrl: string): Promise<boolean> => {
   while (new Date().getTime() < endTime) {
     try {
       const response = await fetch(processUrl, { headers });
-      const json = await response.json();
+      const json = (await response.json()) as RunStatusResponse;
 
       if (json.state === 'COMPL') {
         setOutput('run-id', json.id);
         setOutput('duration', json.duration);
-        setOutput('robotrun-ids', json.robotRuns.map(({ id }: { id: string }) => id).join(','));
+        setOutput('robotrun-ids', json.robotRuns.map(({ id }) => id).join(','));
         setOutput('state', json.result);
 
         console.info(`Process run ${json.id} completed succesfully in ${json.duration} seconds`);

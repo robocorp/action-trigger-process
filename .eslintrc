@@ -1,7 +1,8 @@
 {
-    "plugins": ["github", "prettier"],
-    "extends": ["plugin:github/recommended", "plugin:github/typescript"],
-    "rules": {
-        "no-console": "off"
-    }
+  "plugins": ["github", "prettier"],
+  "extends": ["plugin:github/recommended", "plugin:github/typescript"],
+  "rules": {
+    "no-console": "off",
+    "i18n-text/no-en": "off"
+  }
 }
